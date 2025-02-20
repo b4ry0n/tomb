@@ -893,7 +893,7 @@ function _print() {
 _list_optional_tools() {
 	typeset -a _deps
 	_deps=(gettext dcfldd shred steghide)
-	_deps+=(resize2fs tomb-kdb-pbkdf2 argon2 qrencode recoll unoconv lsof setfacl)
+	_deps+=(resize2fs tomb-kdb-pbkdf2 argon2 qrencode recollindex recollq unoconv lsof setfacl)
 	for d in $_deps; do
 		_print "`which $d`"
 	done
@@ -953,7 +953,7 @@ _ensure_dependencies() {
 	# Check for ARGON2 KDF auxiliary tools
 	command -v argon2 1>/dev/null 2>/dev/null || ARGON2=0
 	# Check for Recoll file content indexer
-	command -v recoll 1>/dev/null 2>/dev/null || RECOLL=0
+	command -v recollindex 1>/dev/null 2>/dev/null && command -v recollq 1>/dev/null 2>/dev/null || RECOLL=0
 	# Check for QREncode for paper backups of keys
 	command -v qrencode 1>/dev/null 2>/dev/null || QRENCODE=0
 	# Check for acl/setfacl for setting ACL at the mount location
